@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styleQuiz.css">
+  <title>Quiz: Seguridad Eléctrica</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="quiz-container">
+    <a href="index.html" class="back-btn">← Volver</a>
+    <h1>⚡ Quiz: Riesgos Eléctricos en la Oficina</h1>
+    <form id="quizForm">
+      <!-- Pregunta 1 -->
+      <div class="question">
+        <p>1. ¿Qué haces con un cable de laptop pelado?</p>
+        <label><input type="radio" name="q1" value="0"> A) Ponerle cinta adhesiva.</label>
+        <label><input type="radio" name="q1" value="1"> B) Reportarlo y dejar de usarlo.</label>
+        <label><input type="radio" name="q1" value="0"> C) Usarlo solo por poco tiempo.</label>
+      </div>
+
+      <!-- Pregunta 2 -->
+      <div class="question">
+        <p>2. Peligro de conectar una regleta a otra ("encadenar"):</p>
+        <label><input type="radio" name="q2" value="0"> A) Ninguno, es normal.</label>
+        <label><input type="radio" name="q2" value="1"> B) Sobrecarga e incendio.</label>
+        <label><input type="radio" name="q2" value="0"> C) Que se apague la PC.</label>
+      </div>
+
+      <!-- Pregunta 3 -->
+      <div class="question">
+        <p>3. Sale humo de la impresora. ¿Primer paso?</p>
+        <label><input type="radio" name="q3" value="0"> A) Echarle agua.</label>
+        <label><input type="radio" name="q3" value="1"> B) Desconectarla de la corriente.</label>
+        <label><input type="radio" name="q3" value="0"> C) Soplar para enfriarla.</label>
+      </div>
+
+      <button type="button" onclick="checkResults()">Enviar Respuestas</button>
+    </form>
+    <div id="result"></div>
+  </div>
+
+  <script>
+    function checkResults() {
+      let score = 0;
+      const form = document.getElementById('quizForm');
+      const formData = new FormData(form);
+
+      for (let value of formData.values()) {
+        score += parseInt(value);
+      }
+
+      const resultDiv = document.getElementById('result');
+      resultDiv.innerHTML = `<h3>Tu puntuación: ${score} de 3</h3>`;
+      resultDiv.style.display = 'block';
+      if (score === 3) {
+        resultDiv.style.backgroundColor = '#d4edda';
+        resultDiv.innerHTML += "<p>¡Excelente! Eres un experto en seguridad.</p>";
+      } else {
+        resultDiv.style.backgroundColor = '#f8d7da';
+        resultDiv.innerHTML += "<p>Repasa las normas de seguridad eléctrica.</p>";
+      }
+    }
+  </script>
+</body>
+
+</html>
